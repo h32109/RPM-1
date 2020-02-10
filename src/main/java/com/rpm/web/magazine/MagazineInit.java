@@ -1,5 +1,6 @@
 package com.rpm.web.magazine;
 
+import com.rpm.web.util.ArticleCrawler;
 import com.rpm.web.util.MakeCarDummyList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -19,11 +20,7 @@ public class MagazineInit implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-
-        SimpleDateFormat SystemTime = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
-        String formattedTime1 = SystemTime.format (System.currentTimeMillis());
-
-        System.out.println( formattedTime1 + "  INFO 18844 --- [           MagazineInit ]         : MagazineInit Start ");
+        System.out.println( new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss").format (System.currentTimeMillis()) + "  INFO 18844 --- [           MagazineInit ]         : MagazineInit Start ");
 
        MakeCarDummyList http = new MakeCarDummyList();
         Map<String, Map<String, Object>> map = new HashMap<>();
@@ -31,7 +28,7 @@ public class MagazineInit implements ApplicationRunner {
         if (articleRepository.count() == 0 ) crawler.motorgraphComtroller();
         if (extractedWordRepository.count() == 0 ) crawler.extractor();
 
-        System.out.println( formattedTime1 + "  INFO 18844 --- [           MagazineInit ]         : MagazineInit End ");
+        System.out.println( new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss").format (System.currentTimeMillis()) + "  INFO 18844 --- [           MagazineInit ]         : MagazineInit End ");
 
     }
 

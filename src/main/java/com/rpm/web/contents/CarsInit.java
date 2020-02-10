@@ -33,10 +33,7 @@ public class CarsInit implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        SimpleDateFormat SystemTime = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
-        String formattedTime1 = SystemTime.format (System.currentTimeMillis());
-
-        System.out.println( formattedTime1 + "  INFO 18844 --- [           CarsInit ]         : CarsInit Start ");
+        System.out.println( new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss").format (System.currentTimeMillis()) + "  INFO 18844 --- [           CarsInit ]         : CarsInit Start ");
 
 
         MakeCarDummyList http = new MakeCarDummyList();
@@ -46,8 +43,8 @@ public class CarsInit implements ApplicationRunner {
 
         if (carsRepository.count() == 0) {
             int count = Integer.parseInt(http.getCarCount("https://www.kcar.com/index_api/getCarCnt.do"));
-            for (int i = 1; i <= count-100; i++) {
-                if ( i % 1000 == 0 )         System.out.println( formattedTime1 + "  INFO 18844 --- [           CarsInit ]         : CarsInit processing :: insert Data count = [ "+ i +" ] ");
+            for (int i = 1; i <= count-7000; i++) {
+                if ( i % 1000 == 0 ) System.out.println( new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss").format (System.currentTimeMillis()) + "  INFO 18844 --- [           CarsInit ]         : CarsInit processing :: insert Data count = [ "+ i +" ] ");
 
                 Map<String, String> strJson = new HashMap<>();
                 map = jsonMapper.readValue(
@@ -96,7 +93,7 @@ public class CarsInit implements ApplicationRunner {
         }
 
 
-        System.out.println( formattedTime1 + "  INFO 18844 --- [           CarsInit ]         : CarsInit End ");
+        System.out.println( new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss").format (System.currentTimeMillis()) + "  INFO 18844 --- [           CarsInit ]         : CarsInit End ");
 
     }
 }
